@@ -5,9 +5,10 @@ import { motion } from 'framer-motion'
 
 interface Props {
   roles: string[]
+  darkMode?: boolean
 }
 
-export default function RoleCarousel({ roles }: Props) {
+export default function RoleCarousel({ roles, darkMode = true }: Props) {
   const [index, setIndex] = useState(0)
 
   useEffect(() => {
@@ -18,15 +19,13 @@ export default function RoleCarousel({ roles }: Props) {
   return (
     <motion.p
       key={index}
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 14 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -18 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="text-xl font-display font-semibold text-slate-300"
+      exit={{ opacity: 0, y: -14 }}
+      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      className={`text-sm font-bold tracking-widest uppercase ${darkMode ? 'text-white/60' : 'text-mid'}`}
     >
-      <span className="text-[#00d9f5]">{'>'}</span>{' '}
-      <span>{roles[index]}</span>
-      <span className="typing-cursor text-[#00d9f5] ml-0.5">_</span>
+      — {roles[index]}
     </motion.p>
   )
 }

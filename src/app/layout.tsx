@@ -1,18 +1,12 @@
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 import './globals.css'
-import CustomCursor from '@/components/CustomCursor'
 
-const inter = Inter({
+const montserrat = Montserrat({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-montserrat',
   display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space',
-  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
 })
 
 export const metadata: Metadata = {
@@ -20,14 +14,8 @@ export const metadata: Metadata = {
   description:
     'Portfolio de Doungmo Lagoung Valdes, développeur web & mobile basé à Douala, Cameroun. Spécialisé en React, Next.js, React Native, TypeScript.',
   keywords: [
-    'developer',
-    'full-stack',
-    'react',
-    'nextjs',
-    'react native',
-    'typescript',
-    'douala',
-    'cameroun',
+    'developer', 'full-stack', 'react', 'nextjs', 'react native',
+    'typescript', 'douala', 'cameroun',
   ],
   authors: [{ name: 'Doungmo Lagoung Valdes' }],
   openGraph: {
@@ -39,14 +27,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className="dark">
+    <html lang="fr">
       <head>
         <link rel="icon" href="/profile.jpg" />
       </head>
-      <body
-        className={`${inter.variable} ${spaceGrotesk.variable} font-sans bg-[#050508] text-white overflow-x-hidden`}
-      >
-        <CustomCursor />
+      <body className={`${montserrat.variable} bg-white text-dark overflow-x-hidden`}>
         {children}
       </body>
     </html>

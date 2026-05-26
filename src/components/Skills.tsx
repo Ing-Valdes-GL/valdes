@@ -4,48 +4,46 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { skills, categoryLabels, categoryOrder, type SkillCategory } from '@/data/skills'
 import AnimatedSection from './AnimatedSection'
-import SkillIcon, { getSkillHex } from './SkillIcon'
+import SkillIcon from './SkillIcon'
+
+const filters: Array<{ value: SkillCategory | 'all'; label: string }> = [
+  { value: 'all', label: 'TOUT' },
+  ...categoryOrder.map((c) => ({ value: c, label: categoryLabels[c].toUpperCase() })),
+]
 
 export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState<SkillCategory | 'all'>('all')
+  const [active, setActive] = useState<SkillCategory | 'all'>('all')
 
-  const filteredSkills = activeCategory === 'all'
-    ? skills
-    : skills.filter((s) => s.category === activeCategory)
-
-  const categoryFilters: Array<{ value: SkillCategory | 'all'; label: string }> = [
-    { value: 'all', label: 'Tout' },
-    ...categoryOrder.map((c) => ({ value: c, label: categoryLabels[c] })),
-  ]
+  const displayed = active === 'all' ? skills : skills.filter((s) => s.category === active)
 
   return (
-    <section id="skills" className="relative py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section id="skills" className="bg-white">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
 
-        {/* ─── Header ────────────────────────────────── */}
-        <AnimatedSection className="mb-10">
-          <span className="text-[#8b5cf6] text-sm font-mono font-medium tracking-widest uppercase">
-            02. Stack technique
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-extrabold mt-2 section-title">
-            Mes Compétences
+        {/* ─── Header ────────────────────────────────────── */}
+        <AnimatedSection className="mb-14 text-center">
+          <span className="section-label text-dark">COMPÉTENCES</span>
+          <h2 className="font-black text-5xl md:text-6xl lg:text-7xl tracking-tight text-dark mt-8 leading-none">
+            MES OUTILS
           </h2>
-          <p className="text-slate-500 mt-4 max-w-xl">
-            Un arsenal technologique moderne enrichi par les outils d&apos;IA les plus avancés.
-          </p>
+          <div className="wave-divider justify-center mt-6">
+            <span>——</span>
+            <span>\/\/\/</span>
+            <span>——</span>
+          </div>
         </AnimatedSection>
 
-        {/* ─── Filter pills ───────────────────────────── */}
-        <AnimatedSection delay={0.1} className="mb-10">
-          <div className="flex flex-wrap gap-2">
-            {categoryFilters.map(({ value, label }) => (
+        {/* ─── Filter tabs ───────────────────────────────── */}
+        <AnimatedSection delay={0.1} className="mb-12">
+          <div className="flex flex-wrap justify-center gap-2">
+            {filters.map(({ value, label }) => (
               <button
                 key={value}
-                onClick={() => setActiveCategory(value)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 border ${
-                  activeCategory === value
-                    ? 'bg-[#00d9f5]/15 text-[#00d9f5] border-[#00d9f5]/40 shadow-lg shadow-[#00d9f5]/10'
-                    : 'glass-card text-slate-400 border-white/[0.07] hover:text-white hover:border-white/20'
+                onClick={() => setActive(value)}
+                className={`text-xs font-black tracking-widest px-4 py-2 border transition-all duration-200 ${
+                  active === value
+                    ? 'bg-dark text-white border-dark'
+                    : 'bg-transparent text-mid border-border hover:border-dark hover:text-dark'
                 }`}
               >
                 {label}
@@ -54,41 +52,38 @@ export default function Skills() {
           </div>
         </AnimatedSection>
 
-        {/* ─── Skills grid ────────────────────────────── */}
+        {/* ─── Skills grid ───────────────────────────────── */}
         <motion.div
           layout
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3"
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-px bg-border"
         >
           <AnimatePresence mode="popLayout">
-            {filteredSkills.map((skill, i) => (
+            {displayed.map((skill, i) => (
               <motion.div
                 key={skill.name}
                 layout
-                initial={{ opacity: 0, scale: 0.8 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.22, delay: i * 0.025 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2, delay: i * 0.02 }}
               >
-                <SkillBadge name={skill.name} bgColor={skill.bgColor} />
+                <SkillTile name={skill.name} />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        {/* ─── Category summary ───────────────────────── */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
-          {categoryOrder.slice(0, 3).map((cat, i) => {
+        {/* ─── Category counts ───────────────────────────── */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-border mt-px">
+          {categoryOrder.map((cat) => {
             const count = skills.filter((s) => s.category === cat).length
-            const gradients = [
-              'from-[#00d9f5]/20 to-transparent',
-              'from-[#8b5cf6]/20 to-transparent',
-              'from-amber-400/20 to-transparent',
-            ]
             return (
-              <AnimatedSection key={cat} delay={i * 0.1}>
-                <div className={`glass-card rounded-2xl p-6 border border-white/[0.07] bg-gradient-to-br ${gradients[i]}`}>
-                  <div className="font-display text-3xl font-extrabold text-white mb-1">{count}</div>
-                  <div className="text-slate-400 text-sm">{categoryLabels[cat]}</div>
+              <AnimatedSection key={cat}>
+                <div className="bg-light p-6 text-center">
+                  <div className="font-black text-3xl text-dark">{count}</div>
+                  <div className="text-xs font-bold tracking-widest uppercase text-mid mt-1">
+                    {categoryLabels[cat]}
+                  </div>
                 </div>
               </AnimatedSection>
             )
@@ -99,51 +94,29 @@ export default function Skills() {
   )
 }
 
-/* ─── Individual skill badge ─────────────────────────── */
-function SkillBadge({ name, bgColor }: { name: string; bgColor: string }) {
+/* ─── Skill tile ─────────────────────────────────────── */
+function SkillTile({ name }: { name: string }) {
   const [hovered, setHovered] = useState(false)
-  const hex = getSkillHex(name)
 
   return (
     <motion.div
-      className={`relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-2xl border glass-card transition-all duration-200 ${bgColor}`}
+      className="bg-white flex flex-col items-center justify-center gap-3 p-5 cursor-default"
       style={{
-        borderColor: hovered ? `${hex}55` : 'rgba(255,255,255,0.07)',
-        boxShadow: hovered ? `0 0 24px ${hex}22, 0 8px 32px rgba(0,0,0,0.3)` : 'none',
+        backgroundColor: hovered ? '#111111' : '#FFFFFF',
+        transition: 'background-color 0.2s',
       }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -5, scale: 1.06 }}
-      transition={{ duration: 0.18 }}
     >
-      {/* Icon */}
-      <motion.div
-        className="flex items-center justify-center"
-        style={{ color: hovered ? hex : `${hex}bb` }}
-        animate={{ scale: hovered ? 1.15 : 1 }}
-        transition={{ duration: 0.18 }}
-      >
-        <SkillIcon name={name} size={26} />
-      </motion.div>
-
-      {/* Name */}
+      <div style={{ color: hovered ? '#FFFFFF' : '#111111', transition: 'color 0.2s' }}>
+        <SkillIcon name={name} size={28} />
+      </div>
       <span
-        className="text-xs font-medium text-center leading-tight transition-colors duration-200"
-        style={{ color: hovered ? '#f0f4f8' : '#94a3b8' }}
+        className="text-[10px] font-bold tracking-wider text-center leading-tight"
+        style={{ color: hovered ? 'rgba(255,255,255,0.7)' : '#555555', transition: 'color 0.2s' }}
       >
         {name}
       </span>
-
-      {/* Glow backdrop */}
-      {hovered && (
-        <motion.div
-          className="absolute inset-0 rounded-2xl -z-10 blur-xl"
-          style={{ background: `${hex}18` }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        />
-      )}
     </motion.div>
   )
 }

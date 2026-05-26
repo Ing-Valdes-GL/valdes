@@ -2,27 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Design tokens ──────────────────────────────────── */
 :root {
-  --bg-primary: #050508;
-  --bg-secondary: #0a0a12;
-  --accent-cyan: #00d9f5;
-  --accent-purple: #8b5cf6;
-  --accent-green: #00ff88;
-  --text-primary: #f0f4f8;
-  --text-muted: #6b7280;
-}
-
-* {
-  cursor: none;
-}
-
-a,
-button,
-[role="button"],
-input,
-textarea,
-select {
-  cursor: none;
+  --col-dark:   #111111;
+  --col-light:  #E8E8E8;
+  --col-white:  #FFFFFF;
+  --col-black:  #000000;
+  --col-mid:    #555555;
+  --col-border: #CCCCCC;
 }
 
 html {
@@ -30,113 +17,110 @@ html {
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: var(--col-white);
+  color: var(--col-dark);
   overflow-x: hidden;
+  font-family: var(--font-montserrat), 'Montserrat', system-ui, sans-serif;
 }
 
 /* ─── Scrollbar ─────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #00d9f5, #8b5cf6);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, #00d9f5 30%, #8b5cf6); }
-
-/* ─── Gradient text ──────────────────────────────────── */
-.gradient-text {
-  background: linear-gradient(135deg, #00d9f5 0%, #8b5cf6 55%, #00ff88 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-alt {
-  background: linear-gradient(135deg, #8b5cf6, #f59e0b);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* ─── Glow utilities ─────────────────────────────────── */
-.glow-cyan  { box-shadow: 0 0 25px rgba(0, 217, 245, 0.35), 0 0 60px rgba(0, 217, 245, 0.12); }
-.glow-purple { box-shadow: 0 0 25px rgba(139, 92, 246, 0.35), 0 0 60px rgba(139, 92, 246, 0.12); }
-.glow-green  { box-shadow: 0 0 25px rgba(0, 255, 136, 0.35), 0 0 60px rgba(0, 255, 136, 0.12); }
-.text-glow-cyan { text-shadow: 0 0 20px rgba(0, 217, 245, 0.8), 0 0 40px rgba(0, 217, 245, 0.4); }
-
-/* ─── Glass card ─────────────────────────────────────── */
-.glass-card {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-/* ─── Gradient border ────────────────────────────────── */
-.gradient-border {
-  position: relative;
-  background: var(--bg-secondary);
-  border-radius: inherit;
-}
-.gradient-border::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(0,217,245,0.6), rgba(139,92,246,0.5), rgba(0,255,136,0.3));
-  z-index: -1;
-}
-
-/* ─── Grid background ────────────────────────────────── */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(0, 217, 245, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 217, 245, 0.04) 1px, transparent 1px);
-  background-size: 50px 50px;
-}
-
-/* ─── Section heading accent line ────────────────────── */
-.section-title::after {
-  content: '';
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #00d9f5, #8b5cf6);
-  margin-top: 10px;
-  border-radius: 2px;
-}
-
-/* ─── Noise overlay ──────────────────────────────────── */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.018;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  z-index: 9999;
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--col-light); }
+::-webkit-scrollbar-thumb { background: var(--col-dark); border-radius: 0; }
 
 /* ─── Selection ──────────────────────────────────────── */
 ::selection {
-  background: rgba(0, 217, 245, 0.25);
-  color: #00d9f5;
+  background: var(--col-dark);
+  color: var(--col-white);
 }
 
-/* ─── Shimmer animation for buttons ─────────────────── */
-@keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
+/* ─── Section label (framed) ─────────────────────────── */
+/* Usage: <span class="section-label">ABOUT ME</span> */
+.section-label {
+  display: inline-block;
+  border: 1.5px solid currentColor;
+  padding: 4px 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
-.shimmer-btn {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite;
+/* ─── Decorative wave divider ────────────────────────── */
+/* Usage: <div class="wave-divider" /> */
+.wave-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--col-mid);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  user-select: none;
 }
 
-/* ─── Typing cursor blink ────────────────────────────── */
+/* ─── Pipe button ────────────────────────────────────── */
+/* Usage: <button class="pipe-btn">EXPLORE</button> */
+.pipe-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: 1.5px solid currentColor;
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.pipe-btn:hover {
+  background: var(--col-dark);
+  color: var(--col-white);
+  border-color: var(--col-dark);
+}
+
+/* ─── Dark section variant ───────────────────────────── */
+.section-dark {
+  background-color: var(--col-dark);
+  color: var(--col-white);
+}
+.section-dark .section-label {
+  color: var(--col-white);
+  border-color: rgba(255,255,255,0.5);
+}
+
+/* ─── Light section variant ─────────────────────────── */
+.section-light {
+  background-color: var(--col-light);
+  color: var(--col-dark);
+}
+
+/* ─── Bottom-border input ────────────────────────────── */
+.input-line {
+  background: transparent;
+  border: none;
+  border-bottom: 1.5px solid var(--col-border);
+  border-radius: 0;
+  outline: none;
+  padding: 0.5rem 0;
+  width: 100%;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+.input-line:focus {
+  border-color: var(--col-dark);
+}
+
+/* ─── Diagonal clip hero ─────────────────────────────── */
+.hero-right-clip {
+  clip-path: polygon(8% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+@media (max-width: 768px) {
+  .hero-right-clip { clip-path: none; }
+}
+
+/* ─── Typing cursor ──────────────────────────────────── */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }

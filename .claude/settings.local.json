@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\" -ErrorAction SilentlyContinue; if \\(-not \\(Test-Path \"C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\"\\)\\) { New-Item -ItemType Directory -Path \"C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\" -Force })",
+      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\\\\public\")",
+      "Bash(./node_modules/.bin/tsc --noEmit)",
+      "PowerShell(Set-Location \"C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\"; Get-ChildItem node_modules\\\\.bin | Where-Object { $_.Name -match \"next\" } | Select-Object Name -First 5)",
+      "PowerShell(cmd /c \"dir C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\\\\node_modules /b 2>&1\")",
+      "PowerShell(cmd /c \"dir C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\\\\node_modules\\\\.bin /b 2>&1\")",
+      "PowerShell(cmd /c \"dir C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\\\\node_modules\\\\next\\\\dist\\\\bin /b 2>&1\")",
+      "PowerShell(cmd /c \"dir C:\\\\Users\\\\NTS\\\\Documents\\\\valdes\\\\node_modules\\\\next /b 2>&1\")",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('bin', 'no bin'\\)\\)\")",
+      "Bash(git init *)",
+      "Bash(git remote *)",
+      "Bash(git add *)",
+      "Bash(git config *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "WebFetch(domain:www.ccntechnologies.com)",
+      "Bash(npm list *)",
+      "Bash(gh api *)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(d.get\\('description',''\\), '|', d.get\\('language',''\\), '|', d.get\\('topics',[]\\)\\)\")",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:www.figma.com)",
+      "WebSearch",
+      "WebFetch(domain:tomasz-gajda.netlify.app)",
+      "WebFetch(domain:wpdean.com)",
+      "Bash(npx next *)"
+    ]
+  }
+}
