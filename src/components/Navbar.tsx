@@ -112,7 +112,7 @@ export default function Navbar() {
 
           {/* CTA button */}
           <a
-            href="/cv.pdf"
+            href="/DoungmoLagoungValdesCV.pdf"
             download
             className="hidden md:flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-gradient-to-r from-[#00d9f5] to-[#8b5cf6] text-black hover:opacity-90 transition-opacity duration-200"
           >

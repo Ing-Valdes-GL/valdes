@@ -59,7 +59,7 @@ export default function Projects() {
               <strong className="text-amber-400">Tip :</strong> Remplace ce fichier statique par
               un appel à{' '}
               <code className="font-mono bg-amber-400/10 px-1 rounded">
-                api.github.com/users/&#123;USERNAME&#125;/repos
+                api.github.com/users/Ing-Valdes-GL/repos
               </code>{' '}
               pour afficher tes dépôts en temps réel. Voir le commentaire dans{' '}
               <code className="font-mono bg-amber-400/10 px-1 rounded">src/data/projects.ts</code>.

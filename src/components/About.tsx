@@ -31,6 +31,14 @@ const timeline = [
     desc: 'Assistance technique et conception d\'une solution de prêt en ligne : analyse des besoins, modélisation UML, prototypage Figma.',
   },
   {
+    year: '2025 · 3 mois',
+    icon: Briefcase,
+    color: 'text-rose-400 bg-rose-400/10 border-rose-400/30',
+    title: 'Stage Développeur Web',
+    org: 'CCN Technologies — Douala',
+    desc: 'Développement d\'applications web avec PHP & Laravel : création de fonctionnalités backend, gestion de bases de données MySQL, intégration d\'APIs REST et travail en équipe sur des projets clients en environnement professionnel.',
+  },
+  {
     year: 'Depuis 2025',
     icon: Zap,
     color: 'text-[#00ff88] bg-[#00ff88]/10 border-[#00ff88]/30',

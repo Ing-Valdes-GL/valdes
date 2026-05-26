@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { skills, categoryLabels, categoryOrder, type SkillCategory } from '@/data/skills'
 import AnimatedSection from './AnimatedSection'
+import SkillIcon, { getSkillHex } from './SkillIcon'
 
 export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<SkillCategory | 'all'>('all')
@@ -34,7 +35,7 @@ export default function Skills() {
           </p>
         </AnimatedSection>
 
-        {/* ─── Category filter pills ──────────────────── */}
+        {/* ─── Filter pills ───────────────────────────── */}
         <AnimatedSection delay={0.1} className="mb-10">
           <div className="flex flex-wrap gap-2">
             {categoryFilters.map(({ value, label }) => (
@@ -66,15 +67,15 @@ export default function Skills() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ duration: 0.25, delay: i * 0.03 }}
+                transition={{ duration: 0.22, delay: i * 0.025 }}
               >
-                <SkillBadge skill={skill} />
+                <SkillBadge name={skill.name} bgColor={skill.bgColor} />
               </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>
 
-        {/* ─── Categories summary ─────────────────────── */}
+        {/* ─── Category summary ───────────────────────── */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-16">
           {categoryOrder.slice(0, 3).map((cat, i) => {
             const count = skills.filter((s) => s.category === cat).length
@@ -85,9 +86,7 @@ export default function Skills() {
             ]
             return (
               <AnimatedSection key={cat} delay={i * 0.1}>
-                <div
-                  className={`glass-card rounded-2xl p-6 border border-white/[0.07] bg-gradient-to-br ${gradients[i]} hover:border-white/15 transition-all duration-300`}
-                >
+                <div className={`glass-card rounded-2xl p-6 border border-white/[0.07] bg-gradient-to-br ${gradients[i]}`}>
                   <div className="font-display text-3xl font-extrabold text-white mb-1">{count}</div>
                   <div className="text-slate-400 text-sm">{categoryLabels[cat]}</div>
                 </div>
@@ -101,43 +100,47 @@ export default function Skills() {
 }
 
 /* ─── Individual skill badge ─────────────────────────── */
-interface SkillBadgeProps {
-  skill: (typeof skills)[number]
-}
-
-function SkillBadge({ skill }: SkillBadgeProps) {
+function SkillBadge({ name, bgColor }: { name: string; bgColor: string }) {
   const [hovered, setHovered] = useState(false)
+  const hex = getSkillHex(name)
 
   return (
     <motion.div
-      className={`relative flex flex-col items-center justify-center gap-2 p-4 rounded-2xl border glass-card transition-all duration-300 ${skill.color} ${skill.bgColor} ${
-        hovered ? 'shadow-lg' : ''
-      }`}
+      className={`relative flex flex-col items-center justify-center gap-2.5 p-4 rounded-2xl border glass-card transition-all duration-200 ${bgColor}`}
+      style={{
+        borderColor: hovered ? `${hex}55` : 'rgba(255,255,255,0.07)',
+        boxShadow: hovered ? `0 0 24px ${hex}22, 0 8px 32px rgba(0,0,0,0.3)` : 'none',
+      }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      whileHover={{ y: -5, scale: 1.05 }}
-      transition={{ duration: 0.2 }}
+      whileHover={{ y: -5, scale: 1.06 }}
+      transition={{ duration: 0.18 }}
     >
-      {/* Icon circle */}
+      {/* Icon */}
       <motion.div
-        className={`w-10 h-10 rounded-xl flex items-center justify-center font-display font-extrabold text-sm border ${skill.color} ${skill.bgColor}`}
-        animate={{ rotate: hovered ? [0, -5, 5, 0] : 0 }}
-        transition={{ duration: 0.35 }}
+        className="flex items-center justify-center"
+        style={{ color: hovered ? hex : `${hex}bb` }}
+        animate={{ scale: hovered ? 1.15 : 1 }}
+        transition={{ duration: 0.18 }}
       >
-        {skill.icon}
+        <SkillIcon name={name} size={26} />
       </motion.div>
 
       {/* Name */}
-      <span className="text-xs font-medium text-center text-slate-300 group-hover:text-white leading-tight">
-        {skill.name}
+      <span
+        className="text-xs font-medium text-center leading-tight transition-colors duration-200"
+        style={{ color: hovered ? '#f0f4f8' : '#94a3b8' }}
+      >
+        {name}
       </span>
 
       {/* Glow backdrop */}
       {hovered && (
         <motion.div
-          className={`absolute inset-0 rounded-2xl blur-xl -z-10 ${skill.bgColor}`}
+          className="absolute inset-0 rounded-2xl -z-10 blur-xl"
+          style={{ background: `${hex}18` }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 3 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         />
       )}

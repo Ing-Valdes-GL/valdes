@@ -104,7 +104,7 @@ export default function Hero() {
               <div className="flex-1 h-px bg-white/5" />
               <div className="flex items-center gap-3">
                 {[
-                  { href: 'https://github.com/ValdesDoungmo', icon: <Github size={18} />,    label: 'GitHub'   },
+                  { href: 'https://github.com/Ing-Valdes-GL', icon: <Github size={18} />,    label: 'GitHub'   },
                   { href: 'https://linkedin.com',             icon: <Linkedin size={18} />,  label: 'LinkedIn' },
                   { href: 'https://wa.me/237688297576',       icon: <WhatsAppIcon />,        label: 'WhatsApp' },
                   { href: 'https://tiktok.com',               icon: <TikTokIcon />,          label: 'TikTok'   },

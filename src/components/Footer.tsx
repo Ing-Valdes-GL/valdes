@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { Github, Linkedin, Mail, Heart, ArrowUp } from 'lucide-react'
 
 const socials = [
-  { href: 'https://github.com/ValdesDoungmo',          icon: Github,    label: 'GitHub'   },
+  { href: 'https://github.com/Ing-Valdes-GL',           icon: Github,    label: 'GitHub'   },
   { href: 'https://linkedin.com',                       icon: Linkedin,  label: 'LinkedIn' },
   { href: 'mailto:doungmolagoungvaldes@gmail.com',      icon: Mail,      label: 'Email'    },
 ]

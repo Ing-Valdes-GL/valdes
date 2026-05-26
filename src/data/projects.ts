@@ -4,7 +4,6 @@ export interface Project {
   id: string
   title: string
   description: string
-  longDescription?: string
   techs: string[]
   githubUrl?: string
   liveUrl?: string
@@ -15,27 +14,60 @@ export interface Project {
 }
 
 /**
- * ─── NOTE FOR MAINTAINER ────────────────────────────────────────────────────
- * To pull live data from GitHub, replace this static array with a call to:
- *   GET https://api.github.com/users/{YOUR_GITHUB_USERNAME}/repos
- *       ?sort=pushed&per_page=6&type=owner
+ * ─── NOTE ────────────────────────────────────────────────────────────────────
+ * Pour afficher les repos en temps réel depuis GitHub, remplace ce tableau
+ * statique par un appel à :
+ *   GET https://api.github.com/users/Ing-Valdes-GL/repos
+ *       ?sort=pushed&per_page=9&type=owner
  *
- * You can use the GitHub token as an env variable: NEXT_PUBLIC_GITHUB_TOKEN
- * Add a component `<GitHubProjects username="YOUR_USERNAME" />` and fetch
- * with React Query / SWR for automatic cache and revalidation.
- *
- * For a static export, run the fetch at build time in generateStaticParams
- * or via a build script that writes to src/data/projects.generated.ts.
+ * En statique (output: 'export'), effectue ce fetch dans un script de build
+ * et écris le résultat dans src/data/projects.generated.ts.
  * ─────────────────────────────────────────────────────────────────────────────
  */
 export const projects: Project[] = [
+  // ─── Projets mis en avant ─────────────────────────────
+  {
+    id: 'vertex-biolabs',
+    title: 'Vertex BioBabs',
+    description: 'Site web moderne pour un laboratoire de biologie — présentation des recherches, équipes et services avec une UI soignée et des animations avancées.',
+    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL/vertex-biolabs',
+    liveUrl: 'https://vertex-biolabs.vercel.app',
+    status: 'completed',
+    featured: true,
+    year: 2025,
+    category: 'Web App',
+  },
+  {
+    id: 'alluvicare',
+    title: 'Alluvicare — Kawaga',
+    description: 'Site web complet pour Kawaga, une plateforme de santé digitale. Design professionnel, architecture modulaire et expérience utilisateur optimisée.',
+    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL/alluvicare',
+    liveUrl: 'https://alluvicare.vercel.app',
+    status: 'completed',
+    featured: true,
+    year: 2025,
+    category: 'Web App',
+  },
+  {
+    id: 'peptide-research-hub',
+    title: 'Peptide Research Hub',
+    description: 'Plateforme de recherche scientifique dédiée aux peptides — présentation de données de recherche, publications et ressources pour chercheurs.',
+    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL/peptide-research-hub',
+    liveUrl: 'https://peptide-research-hub-sigma.vercel.app',
+    status: 'completed',
+    featured: true,
+    year: 2025,
+    category: 'Web App',
+  },
   {
     id: 'moneymap',
     title: 'MoneyMap',
     description: 'Application mobile de suivi de dépenses personnelles avec tableaux de bord visuels et statistiques en temps réel.',
-    longDescription: 'MoneyMap aide les utilisateurs à visualiser leurs flux financiers, catégoriser leurs dépenses et recevoir des insights intelligents sur leurs habitudes de consommation.',
     techs: ['React Native', 'Expo', 'TypeScript', 'Neon DB', 'Express', 'Render'],
-    githubUrl: 'https://github.com/ValdesDoungmo',
+    githubUrl: 'https://github.com/Ing-Valdes-GL',
     status: 'completed',
     featured: true,
     year: 2025,
@@ -44,22 +76,23 @@ export const projects: Project[] = [
   {
     id: 'ecommerce-chat',
     title: 'E-Commerce + Chat IA',
-    description: 'Site e-commerce complet développé avec Next.js et un chat IA intégré permettant une assistance à l\'achat en temps réel.',
-    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'OpenAI API'],
-    githubUrl: 'https://github.com/ValdesDoungmo',
+    description: 'Site e-commerce complet avec Next.js et un chat IA intégré permettant une assistance à l\'achat en temps réel.',
+    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL',
     status: 'completed',
     featured: true,
     year: 2025,
     category: 'Web App',
   },
+  // ─── Autres projets ───────────────────────────────────
   {
     id: 'todoapp',
     title: 'ToDoApp — Agenda Intelligent',
     description: 'Application d\'agenda avancée avec rappels intelligents, catégorisation des tâches et synchronisation cross-plateforme.',
     techs: ['React Native', 'Expo', 'TypeScript', 'Supabase'],
-    githubUrl: 'https://github.com/ValdesDoungmo',
+    githubUrl: 'https://github.com/Ing-Valdes-GL',
     status: 'in-progress',
-    featured: true,
+    featured: false,
     year: 2025,
     category: 'Mobile App',
   },
@@ -67,8 +100,8 @@ export const projects: Project[] = [
     id: 'pppte-pwa',
     title: 'PPPTE — Progressive Web App',
     description: 'Application web progressive (PWA) avec mode hors-ligne, notifications push et installation sur mobile/desktop.',
-    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PWA', 'Service Workers'],
-    githubUrl: 'https://github.com/ValdesDoungmo',
+    techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PWA'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL',
     status: 'in-progress',
     featured: false,
     year: 2025,
@@ -83,16 +116,6 @@ export const projects: Project[] = [
     featured: false,
     year: 2024,
     category: 'Web App',
-  },
-  {
-    id: 'static-sites',
-    title: 'Sites Web Hébergés',
-    description: '3 sites web statiques conçus et hébergés sur InfinityFree pour des clients et projets académiques.',
-    techs: ['HTML5', 'CSS3', 'JavaScript', 'PHP', 'InfinityFree'],
-    status: 'completed',
-    featured: false,
-    year: 2024,
-    category: 'Web',
   },
 ]
 
