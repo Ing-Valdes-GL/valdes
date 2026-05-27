@@ -27,7 +27,7 @@ export default function Hero() {
         >
           {/* Framed label */}
           <span className="section-label text-dark mb-8 inline-block">
-            PORTFOLIO 2025
+            PORTFOLIO 2026
           </span>
 
           {/* Name */}
@@ -90,12 +90,12 @@ export default function Hero() {
             src="/profile.jpg"
             alt="Doungmo Lagoung Valdes"
             fill
-            className="object-cover object-top opacity-60"
+            className="object-cover object-center opacity-90"
             priority
             unoptimized
           />
-          {/* Dark gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/20 to-transparent" />
+          {/* Subtle gradient only at the very bottom for stats readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-dark/90 via-dark/10 to-transparent" />
 
           {/* Stats strip at bottom */}
           <div className="relative z-10 p-10 w-full">
