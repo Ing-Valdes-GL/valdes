@@ -104,6 +104,16 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
+      {/* Highlight banner */}
+      {project.highlight && (
+        <div className="mb-4 -mx-7 -mt-7 px-7 py-2 bg-white/10 border-b border-white/15">
+          <span className="text-[10px] font-black tracking-widest uppercase text-white flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+            {project.highlight}
+          </span>
+        </div>
+      )}
+
       {/* Top: category + status */}
       <div className="flex items-center justify-between mb-6">
         <span className="text-[10px] font-black tracking-widest uppercase text-white/30">

@@ -28,7 +28,7 @@ const timeline = [
     desc: "Conception d'une solution de prêt en ligne : analyse des besoins, modélisation UML, prototypage Figma.",
   },
   {
-    year: '2025 · 3 mois',
+    year: '2026 · 3 mois',
     icon: Briefcase,
     title: 'Stage Développeur Web',
     org: 'CCN Technologies — Douala',

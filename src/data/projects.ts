@@ -9,6 +9,7 @@ export interface Project {
   liveUrl?: string
   status: ProjectStatus
   featured: boolean
+  highlight?: string
   year: number
   category: string
 }
@@ -44,7 +45,7 @@ export const projects: Project[] = [
     description: 'Site web complet pour Kawaga, une plateforme de santé digitale. Design professionnel, architecture modulaire et expérience utilisateur optimisée.',
     techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     githubUrl: 'https://github.com/Ing-Valdes-GL/alluvicare',
-    liveUrl: 'https://alluvicare.vercel.app',
+    liveUrl: 'https://alluvicareuk.store',
     status: 'completed',
     featured: true,
     year: 2025,
@@ -57,10 +58,23 @@ export const projects: Project[] = [
     techs: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     githubUrl: 'https://github.com/Ing-Valdes-GL/peptide-research-hub',
     liveUrl: 'https://peptide-research-hub-sigma.vercel.app',
-    status: 'completed',
+    status: 'in-progress',
     featured: true,
     year: 2025,
     category: 'Web App',
+  },
+  {
+    id: 'dashmeal',
+    title: 'DashMeal — Food Delivery',
+    description: 'Mon projet le plus ambitieux : plateforme complète de livraison de repas avec app mobile Expo, dashboard admin Next.js, API REST Express/Supabase, paiements Campay et notifications push en temps réel.',
+    techs: ['React Native', 'Expo', 'Next.js', 'TypeScript', 'Supabase', 'Express'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL/DashMeal',
+    liveUrl: 'https://project-e1sdh-git-main-ing-valdes-gls-projects.vercel.app',
+    status: 'in-progress',
+    featured: true,
+    highlight: 'PLUS GROS PROJET',
+    year: 2025,
+    category: 'Mobile App',
   },
   {
     id: 'moneymap',
