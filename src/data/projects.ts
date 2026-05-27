@@ -98,6 +98,19 @@ export const projects: Project[] = [
     year: 2025,
     category: 'Web App',
   },
+  {
+    id: 'valpay',
+    title: 'ValPay — Fintech Cameroun',
+    description: 'Agrégateur de paiements cross-platform pour le marché camerounais. Wallet avec historique, transferts P2P (1% de frais), recharge télécom via Reloadly, paiements Orange Money / MTN MoMo / Express Union via CamPay, QR code marchand et sécurité PIN + HMAC-SHA256. Projet réalisé lors de mon stage chez CCN Technologies.',
+    techs: ['Flutter', 'Laravel', 'PHP', 'Supabase', 'PostgreSQL', 'Railway'],
+    githubUrl: 'https://github.com/Ing-Valdes-GL/ValPay',
+    liveUrl: 'https://web-kohl-three-94.vercel.app/#/landing',
+    status: 'in-progress',
+    featured: true,
+    highlight: 'PROJET DE STAGE',
+    year: 2026,
+    category: 'Web App',
+  },
   // ─── Autres projets ───────────────────────────────────
   {
     id: 'todoapp',

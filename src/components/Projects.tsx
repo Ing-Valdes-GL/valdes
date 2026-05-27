@@ -13,6 +13,7 @@ const filterLabels: Filter[] = ['ALL', 'WEB', 'MOBILE', 'DESIGN']
 function getFilter(p: (typeof projects)[number]): Filter {
   if (p.category === 'Mobile App') return 'MOBILE'
   if (p.techs.includes('Figma') || p.category === 'Design') return 'DESIGN'
+  if (p.techs.includes('Flutter') && p.category === 'Web App') return 'WEB'
   return 'WEB'
 }
 
@@ -95,8 +96,9 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
     <motion.article
       className="relative flex flex-col h-full bg-dark overflow-hidden p-7"
       style={{
+        borderWidth: '1px',
+        borderStyle: 'solid',
         borderColor: hovered ? 'rgba(255,255,255,0.4)' : 'rgba(255,255,255,0.1)',
-        border: '1px solid',
         transition: 'border-color 0.2s',
       }}
       onHoverStart={() => setHovered(true)}
