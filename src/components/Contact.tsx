@@ -101,7 +101,9 @@ export default function Contact() {
         {/* ─── Big CTA ───────────────────────────────────── */}
         <AnimatedSection delay={0.3} className="text-center">
           <motion.a
-            href="mailto:doungmolagoungvaldes@gmail.com"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=doungmolagoungvaldes@gmail.com&su=Contact%20depuis%20votre%20portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-10 py-4 bg-dark text-white font-black text-sm tracking-widest uppercase hover:bg-black transition-colors duration-200"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
