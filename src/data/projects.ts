@@ -69,7 +69,7 @@ export const projects: Project[] = [
     description: 'Mon projet le plus ambitieux : plateforme complète de livraison de repas avec app mobile Expo, dashboard admin Next.js, API REST Express/Supabase, paiements Campay et notifications push en temps réel.',
     techs: ['React Native', 'Expo', 'Next.js', 'TypeScript', 'Supabase', 'Express'],
     githubUrl: 'https://github.com/Ing-Valdes-GL/DashMeal',
-    liveUrl: 'https://project-e1sdh-git-main-ing-valdes-gls-projects.vercel.app',
+    liveUrl: 'https://project-e1sdh.vercel.app/fr',
     status: 'in-progress',
     featured: true,
     highlight: 'PLUS GROS PROJET',
